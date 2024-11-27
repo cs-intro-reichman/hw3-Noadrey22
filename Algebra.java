@@ -81,11 +81,18 @@ public class Algebra {
 	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
 		int count = 0;
+		boolean isNegative = (x1 < 0 && x2 > 0) || (x2 < 0 && x1 > 0);
+		if (x1 < 0) {
+			x1 = -x1;
+		}
+		if (x2 < 0) {
+			x2 = -x2;
+		}
 		while (x1 >= x2) {
 			count++;
 			x1 = minus(x1, x2);
 		}
-		return count;
+		return isNegative ? -count : count;
 	}
 
 	// Returns x1 % x2
@@ -100,10 +107,10 @@ public class Algebra {
 	public static int sqrt(int x) {
 		int sqrt1 = 0;
 		int pow1 = 0;
-		while (pow1 < x) {
+		while (pow1 <= x) {
 			sqrt1++;
 			pow1 = pow(sqrt1, 2);
 		}
-		return sqrt1;
+		return sqrt1 - 1;
 	}
 }
