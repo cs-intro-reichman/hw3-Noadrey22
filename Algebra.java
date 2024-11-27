@@ -80,19 +80,30 @@ public class Algebra {
 
 	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int count = 0;
+		while (x1 >= x2) {
+			count++;
+			x1 = minus(x1, x2);
+		}
+		return count;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int divS1 = div(x1, x2); // div- step 1
+		int timesS2 = times(divS1, x2); // times- step 2
+		int moduloResult = minus(x1, timesS2);
+		return moduloResult;
 	}
 
 	// Returns the integer part of sqrt(x)
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int sqrt1 = 0;
+		int pow1 = 0;
+		while (pow1 < x) {
+			sqrt1++;
+			pow1 = pow(sqrt1, 2);
+		}
+		return sqrt1;
 	}
 }
