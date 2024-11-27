@@ -8,24 +8,24 @@ public class Anagram {
 		System.out.println(isAnagram("Tom Marvolo Riddle", "I am Lord Voldemort")); // true
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
-		/*
-		 * // Tests the randomAnagram function.
-		 * System.out.println("silent and " + randomAnagram("silent") +
-		 * " are anagrams.");
-		 * 
-		 * // Performs a stress test of randomAnagram
-		 * String str = "1234567";
-		 * Boolean pass = true;
-		 * //// 10 can be changed to much larger values, like 1000
-		 * for (int i = 0; i < 10; i++) {
-		 * String randomAnagram = randomAnagram(str);
-		 * System.out.println(randomAnagram);
-		 * pass = pass && isAnagram(str, randomAnagram);
-		 * if (!pass)
-		 * break;
-		 * }
-		 * System.out.println(pass ? "test passed" : "test Failed");
-		 */
+
+		// Tests the randomAnagram function.
+		System.out.println("silent and " + randomAnagram("silent") +
+				" are anagrams.");
+
+		// Performs a stress test of randomAnagram
+		String str = "1234567";
+		Boolean pass = true;
+		//// 10 can be changed to much larger values, like 1000
+		for (int i = 0; i < 10; i++) {
+			String randomAnagram = randomAnagram(str);
+			System.out.println(randomAnagram);
+			pass = pass && isAnagram(str, randomAnagram);
+			if (!pass)
+				break;
+		}
+		System.out.println(pass ? "test passed" : "test Failed");
+
 	}
 
 	// Returns true if the two given strings are anagrams, false otherwise.
@@ -83,7 +83,19 @@ public class Anagram {
 	// the same
 	// characters as the given string, re-arranged in a random order.
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		String str1 = str;
+		String newWord = "";
+		while (str1.length() > 0) {
+			int randomLetter = (int) (Math.random() * str1.length());
+			newWord = newWord + str1.charAt(randomLetter);
+			if (randomLetter == 0) {
+				str1 = str1.substring(1);
+			} else if (randomLetter == (str1.length() - 1)) {
+				str1 = str1.substring(0, (str1.length() - 1));
+			} else {
+				str1 = str1.substring(0, randomLetter) + str1.substring(randomLetter + 1);
+			}
+		}
+		return newWord;
 	}
 }
